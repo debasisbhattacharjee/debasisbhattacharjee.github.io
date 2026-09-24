@@ -12,15 +12,27 @@
     <p class="back-link"><a href="../">&larr; Debasis Bhattacharjee</a></p>
     <header class="app-header">
       <h1>Voice Mastering Studio</h1>
-      <p class="tagline">Upload a vocal recording. It listens, decides what a studio engineer would do, and applies it — right in your browser. Nothing is uploaded anywhere.</p>
+      <p class="tagline">Upload your vocal, add a backing track if you have one, and it applies what a studio engineer would — right in your browser. Nothing is uploaded anywhere.</p>
     </header>
 
-    <section class="upload-zone" id="dropZone">
-      <input type="file" id="fileInput" accept=".wav,audio/wav" hidden>
-      <button id="chooseFileBtn" class="btn btn-primary">Choose WAV file</button>
+    <section class="upload-zone" id="vocalDropZone">
+      <p class="zone-label">1. Your vocal (required)</p>
+      <input type="file" id="vocalInput" accept=".wav,audio/wav" hidden>
+      <button id="chooseVocalBtn" class="btn btn-primary">Choose vocal WAV</button>
       <p class="hint">or drag &amp; drop a .wav file here</p>
-      <p class="file-name" id="fileName"></p>
+      <p class="file-name" id="vocalFileName"></p>
     </section>
+
+    <section class="upload-zone" id="trackDropZone">
+      <p class="zone-label">2. Backing track (optional)</p>
+      <input type="file" id="trackInput" accept=".wav,audio/wav" hidden>
+      <button id="chooseTrackBtn" class="btn btn-secondary">Choose track WAV</button>
+      <button id="removeTrackBtn" class="btn btn-text" hidden>Remove track</button>
+      <p class="hint">already recorded to the same tempo &amp; starting point as your vocal</p>
+      <p class="file-name" id="trackFileName"></p>
+    </section>
+
+    <button id="masterBtn" class="btn btn-primary btn-large" disabled>Master it</button>
 
     <section class="status-panel" id="statusPanel" hidden>
       <div class="spinner" id="spinner"></div>
@@ -33,18 +45,9 @@
         <ul id="analysisList" class="analysis-list"></ul>
       </div>
 
-      <div class="players">
-        <div class="player">
-          <h3>Original</h3>
-          <audio id="originalPlayer" controls></audio>
-        </div>
-        <div class="player">
-          <h3>Mastered</h3>
-          <audio id="processedPlayer" controls></audio>
-        </div>
-      </div>
+      <div class="players" id="players"></div>
 
-      <a id="downloadBtn" class="btn btn-primary" download="mastered.wav">Download mastered WAV</a>
+      <a id="downloadBtn" class="btn btn-primary" download="mastered.wav">Download WAV</a>
     </section>
 
     <section class="error-panel" id="errorPanel" hidden>
