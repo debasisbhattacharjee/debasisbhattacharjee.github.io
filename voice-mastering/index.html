@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Mastering Studio — AI Vocal Effect Recommender</title>
+<link rel="stylesheet" href="style.min.css">
+<style>.back-link{margin:0 0 8px}.back-link a{color:#9aa1ae;text-decoration:none;font-size:0.9rem}.back-link a:hover{color:#6ee7b7}</style>
+</head>
+<body>
+  <main class="app">
+    <p class="back-link"><a href="../">&larr; Debasis Bhattacharjee</a></p>
+    <header class="app-header">
+      <h1>Voice Mastering Studio</h1>
+      <p class="tagline">Upload a vocal recording. It listens, decides what a studio engineer would do, and applies it — right in your browser. Nothing is uploaded anywhere.</p>
+    </header>
+
+    <section class="upload-zone" id="dropZone">
+      <input type="file" id="fileInput" accept=".wav,audio/wav" hidden>
+      <button id="chooseFileBtn" class="btn btn-primary">Choose WAV file</button>
+      <p class="hint">or drag &amp; drop a .wav file here</p>
+      <p class="file-name" id="fileName"></p>
+    </section>
+
+    <section class="status-panel" id="statusPanel" hidden>
+      <div class="spinner" id="spinner"></div>
+      <p id="statusText">Analyzing your voice…</p>
+    </section>
+
+    <section class="results" id="results" hidden>
+      <div class="analysis-card">
+        <h2>What we heard</h2>
+        <ul id="analysisList" class="analysis-list"></ul>
+      </div>
+
+      <div class="players">
+        <div class="player">
+          <h3>Original</h3>
+          <audio id="originalPlayer" controls></audio>
+        </div>
+        <div class="player">
+          <h3>Mastered</h3>
+          <audio id="processedPlayer" controls></audio>
+        </div>
+      </div>
+
+      <a id="downloadBtn" class="btn btn-primary" download="mastered.wav">Download mastered WAV</a>
+    </section>
+
+    <section class="error-panel" id="errorPanel" hidden>
+      <p id="errorText"></p>
+    </section>
+  </main>
+
+  <script src="app.min.js"></script>
+</body>
+</html>
