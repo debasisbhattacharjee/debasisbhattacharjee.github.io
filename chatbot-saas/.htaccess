@@ -1,0 +1,8 @@
+# Deny access to files that should never be fetched directly over HTTP.
+<FilesMatch "\.(sqlite|sqlite3|db|sql|md)$">
+    Require all denied
+</FilesMatch>
+
+<Files "config.php.example">
+    Require all denied
+</Files>

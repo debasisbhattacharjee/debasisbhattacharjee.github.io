@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copy this file to config.php and fill in your own values.
+ * config.php is git-ignored / must never be shared publicly.
+ */
+
+// Your Anthropic API key (https://console.anthropic.com/settings/keys).
+// Leave blank if you require every customer to bring their own key (BYOK) -
+// see includes/Licensing.php PLAN_LIMITS for the byok_required flag per plan.
+define('ANTHROPIC_API_KEY', 'sk-ant-xxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+
+// Default model used for bot replies. Cheap + fast, good for FAQ-style bots.
+// Options you may offer customers: claude-haiku-4-5, claude-sonnet-5, claude-opus-5
+define('DEFAULT_MODEL', 'claude-haiku-4-5');
+
+// Random long random string, used to sign session cookies / CSRF tokens.
+// Generate one with: php -r "echo bin2hex(random_bytes(32));"
+define('APP_SECRET', 'change-this-to-a-random-64-char-hex-string');
+
+// Shown in page titles / emails.
+define('APP_NAME', 'ChatBot Builder');
+
+// Base URL of this install, no trailing slash. Used to build widget embed
+// snippets and absolute links. Example: https://chat.yourdomain.com
+define('APP_URL', 'http://localhost:8000');
+
+// Admin login (separate from customer accounts) for the /admin panel.
+define('ADMIN_USER', 'admin');
+define('ADMIN_PASS_HASH', ''); // fill via: php -r "echo password_hash('yourpassword', PASSWORD_DEFAULT);"
+
+// WarriorPlus IPN shared secret. Set this to the same string you configure
+// in your WarriorPlus vendor dashboard's IPN "Secret Key" field. Every IPN
+// POST is verified against this before a license is auto-provisioned.
+// See wplus_ipn.php for details.
+define('WPLUS_IPN_SECRET', 'set-me');
+
+// Map each WarriorPlus product ID (front end, each OTO, the bundle...) to
+// the plan it should grant. Find product IDs in your WarriorPlus vendor
+// dashboard under each product's settings. Unmapped product IDs are still
+// logged (data/ipn_log.txt) but no license is auto-created for them.
+define('WPLUS_PRODUCT_PLAN_MAP', [
+    // 'WPLUS_PRODUCT_ID' => 'plan_key',
+    '00000' => 'front_end',
+    '00001' => 'oto1_unlimited',
+    '00002' => 'oto3_agency',
+    '00003' => 'oto4_whitelabel',
+]);
+
+// SQLite database file. Keep this OUTSIDE the public webroot if possible;
+// if it must live under the webroot (shared hosting with one folder), the
+// bundled .htaccess in data/ blocks direct HTTP access to *.sqlite.
+define('DB_PATH', __DIR__ . '/data/app.sqlite');
+
+// PHP error display - turn off in production.
+define('APP_DEBUG', true);
